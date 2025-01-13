@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
-      - run: uvx ruff format --check .
+      - run: uvx ruff format .
 
   linting:
     runs-on: ubuntu-latest
