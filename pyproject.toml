@@ -1,5 +1,5 @@
 [project]
-name = "emrpylibrary"
+name = "emr-py"
 version = "0.1.0"
 description = "My custom library for data science and machine learning projects"
 readme = "README.md"
