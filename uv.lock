@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version < '3.11'",
@@ -16,8 +17,8 @@ wheels = [
 ]
 
 [[package]]
-name = "emrpylibrary"
-version = "0.1.0"
+name = "emr-py"
+version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },
