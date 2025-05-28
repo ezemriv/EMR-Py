@@ -3,10 +3,10 @@
 import os
 import pytest
 import pytest_asyncio
-from dotenv import load_dotenv
-from bot.telegrambot import TelegramTradingBot # type: ignore
+from emrpy.telegrambot import TelegramTradingBot # type: ignore
 
-# Load environment variables
+# Load environment variables (for local testing)
+from dotenv import load_dotenv
 load_dotenv()
 
 # grab your real credentials
