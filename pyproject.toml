@@ -11,6 +11,7 @@ dependencies = [
     "numpy>=2.2.1",
     "pandas>=2.2.3",
     "scikit-learn>=1.6.1",
+    "python-telegram-bot>=22.1",
 ]
 
 [build-system]
@@ -27,5 +28,6 @@ line-length = 100
 dev = [
     "pyright>=1.1.391",
     "pytest>=8.3.4",
+    "pytest-asyncio>=1.0.0",
     "ruff>=0.9.1",
 ]

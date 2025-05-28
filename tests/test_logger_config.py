@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from emrpy.logutils import logger_config
+from emrpy.logging import logger_config
 
 
 # ---------------------------------------------------------------------------
