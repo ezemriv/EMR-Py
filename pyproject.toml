@@ -13,6 +13,7 @@ dependencies = [
     "scikit-learn>=1.6.1",
     "python-telegram-bot>=22.1",
     "python-dotenv>=1.1.0",
+    "colorlog>=6.9.0",
 ]
 
 [build-system]

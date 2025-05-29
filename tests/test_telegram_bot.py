@@ -3,16 +3,16 @@
 import os
 import pytest
 import pytest_asyncio
-from emrpy.telegrambot import TelegramTradingBot # type: ignore
+from emrpy import TelegramTradingBot # type: ignore
 
 # Load environment variables (for local testing)
 from dotenv import load_dotenv
 load_dotenv()
 
 # grab your real credentials
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-CHAT_NAME = os.getenv("TELEGRAM_CHAT_NAME", "Trading Telegram Chat")
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN") or ""
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID") or ""
+CHAT_NAME = os.getenv("TELEGRAM_CHAT_NAME", "Trading Telegram Chat") or "Trading Telegram Chat"
 
 # skip the entire module if credentials are missing
 if not BOT_TOKEN or not CHAT_ID:
