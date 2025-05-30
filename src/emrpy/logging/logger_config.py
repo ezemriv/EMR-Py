@@ -36,6 +36,7 @@ Public API
 - `get_logger(name="emrpy")` → Returns a namespaced logger seeded with a *NullHandler*.
 - `configure(...)` → Attaches colourised console + (optional) rotating file handler(s) **without** mutating the root logger.
 """
+
 from __future__ import annotations
 
 import logging
@@ -65,6 +66,7 @@ DEFAULT_LOG_DIR_ENV = "EMRPY_LOG_DIR"
 # ---------------------------------------------------------------------------
 # Core helpers
 # ---------------------------------------------------------------------------
+
 
 def get_logger(name: str = "emrpy") -> logging.Logger:
     """Return a namespaced logger seeded with :class:`logging.NullHandler`."""
@@ -113,6 +115,7 @@ def configure(
     if coloured_console:
         try:
             from colorlog import ColoredFormatter  # optional extra
+
             console.setFormatter(ColoredFormatter("%(log_color)s" + fmt, datefmt))
         except ModuleNotFoundError:
             console.setFormatter(formatter)

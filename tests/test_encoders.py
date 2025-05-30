@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from emrpy.encoders import encode_cats_pandas
 
+
 def test_encode_cats_pandas_train_only():
     # Simple training DataFrame
     train_data = {
@@ -21,4 +22,4 @@ def test_encode_cats_pandas_train_only():
 
     # Check that encoded values are correct
     assert list(train_encoded["col1"]) == [0, 1, 2, -1]  # A, B, C, missing (-1)
-    assert list(train_encoded["col2"]) == [0, 1, 2, 0]    # X, Y, Z
+    assert list(train_encoded["col2"]) == [0, 1, 2, 0]  # X, Y, Z

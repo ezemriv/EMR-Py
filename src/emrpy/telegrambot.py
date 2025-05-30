@@ -40,8 +40,9 @@ class TelegramTradingBot:
         self.chat_id = chat_id
         self.chat_name = chat_name or chat_id  # Use chat_id as fallback name
 
-    async def send_message(self, text: str, parse_mode: Optional[str] = None,
-                          disable_notification: bool = False) -> bool:
+    async def send_message(
+        self, text: str, parse_mode: Optional[str] = None, disable_notification: bool = False
+    ) -> bool:
         """
         Send a text message to the configured chat.
 
@@ -58,7 +59,7 @@ class TelegramTradingBot:
                 chat_id=self.chat_id,
                 text=text,
                 parse_mode=parse_mode,
-                disable_notification=disable_notification
+                disable_notification=disable_notification,
             )
             logger.debug(f"Message sent successfully to {self.chat_name}")
             return True
@@ -70,9 +71,15 @@ class TelegramTradingBot:
             logger.error(f"Unexpected error sending message: {e}")
             return False
 
-    async def send_trade_alert(self, symbol: str, action: str, price: float,
-                              quantity: float, profit_loss: Optional[float] = None,
-                              disable_notification: bool = False) -> bool:
+    async def send_trade_alert(
+        self,
+        symbol: str,
+        action: str,
+        price: float,
+        quantity: float,
+        profit_loss: Optional[float] = None,
+        disable_notification: bool = False,
+    ) -> bool:
         """
         Send a formatted trade alert with emoji and structured layout.
 
@@ -111,14 +118,15 @@ class TelegramTradingBot:
                             """.strip()
 
         return await self.send_message(
-            text=message,
-            parse_mode=ParseMode.HTML,
-            disable_notification=disable_notification
+            text=message, parse_mode=ParseMode.HTML, disable_notification=disable_notification
         )
 
-    async def send_bulk_notifications(self, messages: List[str],
-                                    parse_mode: Optional[str] = None,
-                                    disable_notification: bool = False) -> List[bool]:
+    async def send_bulk_notifications(
+        self,
+        messages: List[str],
+        parse_mode: Optional[str] = None,
+        disable_notification: bool = False,
+    ) -> List[bool]:
         """
         Send multiple messages concurrently for better performance.
 
@@ -135,10 +143,7 @@ class TelegramTradingBot:
             return []
 
         # Create tasks for concurrent execution
-        tasks = [
-            self.send_message(msg, parse_mode, disable_notification)
-            for msg in messages
-        ]
+        tasks = [self.send_message(msg, parse_mode, disable_notification) for msg in messages]
 
         try:
             # Execute all messages concurrently
@@ -153,7 +158,9 @@ class TelegramTradingBot:
                 else:
                     success_results.append(result)
 
-            logger.info(f"Bulk notifications: {sum(success_results)}/{len(messages)} sent successfully")
+            logger.info(
+                f"Bulk notifications: {sum(success_results)}/{len(messages)} sent successfully"
+            )
             return success_results
 
         except Exception as e:

@@ -3,6 +3,7 @@
 Run with:
     pytest -q
 """
+
 from __future__ import annotations
 
 import logging
@@ -14,6 +15,7 @@ from emrpy.logging import configure, get_logger
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def _has_handler(logger: logging.Logger, typ: type) -> bool:  # pragma: no cover
     return any(isinstance(h, typ) for h in logger.handlers)
 
@@ -21,6 +23,7 @@ def _has_handler(logger: logging.Logger, typ: type) -> bool:  # pragma: no cover
 # ---------------------------------------------------------------------------
 # Tests
 # ---------------------------------------------------------------------------
+
 
 def test_get_logger_returns_null_handler():
     """Every namespaced logger must start with a NullHandler."""

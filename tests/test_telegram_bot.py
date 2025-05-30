@@ -3,10 +3,11 @@
 import os
 import pytest
 import pytest_asyncio
-from emrpy import TelegramTradingBot # type: ignore
+from emrpy import TelegramTradingBot  # type: ignore
 
 # Load environment variables (for local testing)
 from dotenv import load_dotenv
+
 load_dotenv()
 
 # grab your real credentials
@@ -21,11 +22,13 @@ if not BOT_TOKEN or not CHAT_ID:
         allow_module_level=True,
     )
 
+
 @pytest_asyncio.fixture
 async def real_bot():
     bot = TelegramTradingBot(bot_token=BOT_TOKEN, chat_id=CHAT_ID, chat_name=CHAT_NAME)
     yield bot
     # no teardown needed
+
 
 @pytest.mark.asyncio
 async def test_send_message_real(real_bot):
@@ -33,17 +36,15 @@ async def test_send_message_real(real_bot):
     ok = await real_bot.send_message("pytest → Hello from your real bot! 🐍")
     assert ok is True
 
+
 @pytest.mark.asyncio
 async def test_send_trade_alert_real(real_bot):
     """Should be able to send a formatted trade alert."""
     ok = await real_bot.send_trade_alert(
-        symbol="PYTEST",
-        action="BUY",
-        price=123.45,
-        quantity=1.0,
-        profit_loss=10.0
+        symbol="PYTEST", action="BUY", price=123.45, quantity=1.0, profit_loss=10.0
     )
     assert ok is True
+
 
 @pytest.mark.asyncio
 async def test_send_bulk_notifications_real(real_bot):
