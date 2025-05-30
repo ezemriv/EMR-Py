@@ -6,11 +6,7 @@ Run with:
 from __future__ import annotations
 
 import logging
-import shutil
-import tempfile
 from pathlib import Path
-
-import pytest
 
 from emrpy.logging import configure, get_logger
 
