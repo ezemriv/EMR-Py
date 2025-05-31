@@ -33,7 +33,7 @@ async def real_bot():
 @pytest.mark.asyncio
 async def test_send_message_real(real_bot):
     """Should be able to send a simple text message."""
-    ok = await real_bot.send_message("pytest → Hello from your real bot! 🐍")
+    ok = await real_bot.send_message("🔄 GitHub Actions Pytest 🐍\n\n📝 Simple message test")
     assert ok is True
 
 
@@ -52,7 +52,7 @@ async def test_send_bulk_notifications_real(real_bot):
     msgs = [
         "pytest bulk → message 1",
         "pytest bulk → message 2",
-        "pytest bulk → message 3",
+        "\n🔄 GitHub Actions testing finished ✅",
     ]
     results = await real_bot.send_bulk_notifications(msgs)
     # expect a list of booleans, all True if everything worked
