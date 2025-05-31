@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
-      - run: uv sync --locked --all-extras --dev # uv lock --locked
+      - run: uv sync --locked --all-extras --dev # uv lock --locked (old with errors)
 
   formatting:
     runs-on: ubuntu-latest
