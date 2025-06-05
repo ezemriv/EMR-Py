@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from emrpy.encoders import encode_cats_pandas
+from emrpy.ml.encoders import encode_cats_pandas
 
 
 def test_encode_cats_pandas_train_only():
