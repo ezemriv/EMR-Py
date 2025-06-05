@@ -12,6 +12,7 @@ from pathlib import Path
 # Optional polars import
 try:
     import polars as pl
+
     POLARS_AVAILABLE = True
 except ImportError:
     POLARS_AVAILABLE = False
@@ -23,7 +24,7 @@ def load_csv(
     lazy: bool = False,
     sample_frac: Optional[float] = None,
     sample_n: Optional[int] = None,
-    **kwargs
+    **kwargs,
 ) -> Union[pd.DataFrame, "pl.DataFrame", "pl.LazyFrame"]:
     """
     Load CSV files with pandas or polars backend.
@@ -80,7 +81,7 @@ def load_parquet(
     lazy: bool = False,
     sample_frac: Optional[float] = None,
     sample_n: Optional[int] = None,
-    **kwargs
+    **kwargs,
 ) -> Union[pd.DataFrame, "pl.DataFrame", "pl.LazyFrame"]:
     """
     Load Parquet files with pandas or polars backend.
@@ -129,10 +130,7 @@ def load_parquet(
 
 
 def _load_csv_pandas(
-    file_path: Path,
-    sample_frac: Optional[float],
-    sample_n: Optional[int],
-    **kwargs
+    file_path: Path, sample_frac: Optional[float], sample_n: Optional[int], **kwargs
 ) -> pd.DataFrame:
     """Load CSV with pandas backend."""
     # Load the data
@@ -148,10 +146,7 @@ def _load_csv_pandas(
 
 
 def _load_parquet_pandas(
-    file_path: Path,
-    sample_frac: Optional[float],
-    sample_n: Optional[int],
-    **kwargs
+    file_path: Path, sample_frac: Optional[float], sample_n: Optional[int], **kwargs
 ) -> pd.DataFrame:
     """Load Parquet with pandas backend."""
     # Load the data
@@ -167,11 +162,7 @@ def _load_parquet_pandas(
 
 
 def _load_csv_polars(
-    file_path: Path,
-    lazy: bool,
-    sample_frac: Optional[float],
-    sample_n: Optional[int],
-    **kwargs
+    file_path: Path, lazy: bool, sample_frac: Optional[float], sample_n: Optional[int], **kwargs
 ) -> Union["pl.DataFrame", "pl.LazyFrame"]:
     """Load CSV with polars backend."""
     if not POLARS_AVAILABLE:
@@ -201,11 +192,7 @@ def _load_csv_polars(
 
 
 def _load_parquet_polars(
-    file_path: Path,
-    lazy: bool,
-    sample_frac: Optional[float],
-    sample_n: Optional[int],
-    **kwargs
+    file_path: Path, lazy: bool, sample_frac: Optional[float], sample_n: Optional[int], **kwargs
 ) -> Union["pl.DataFrame", "pl.LazyFrame"]:
     """Load Parquet with polars backend."""
     if not POLARS_AVAILABLE:

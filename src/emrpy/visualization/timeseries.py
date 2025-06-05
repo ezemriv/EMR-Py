@@ -13,12 +13,12 @@ from typing import Optional, Tuple
 
 def plot_timeseries(
     df: pd.DataFrame,
-    timestamp_col: str = 'timestamp',
-    value_col: str = 'close',
+    timestamp_col: str = "timestamp",
+    value_col: str = "close",
     segment_col: Optional[str] = None,
     segment_value: Optional[str] = None,
     tick_every: int = 100,
-    figsize: Tuple[int, int] = (12, 6)
+    figsize: Tuple[int, int] = (12, 6),
 ) -> None:
     """
     Plot time series data with continuous bar numbering to avoid trading gaps.
@@ -64,22 +64,22 @@ def plot_timeseries(
     data = data.sort_values(timestamp_col).reset_index(drop=True)
 
     # Create continuous bar numbering
-    data['bar_number'] = range(len(data))
+    data["bar_number"] = range(len(data))
 
     # Create plot
     plt.figure(figsize=figsize)
-    plt.plot(data['bar_number'], data[value_col], lw=1)
+    plt.plot(data["bar_number"], data[value_col], lw=1)
 
     # Set title and labels
-    title = f'{segment_value} {value_col.title()}' if segment_value else f'{value_col.title()}'
-    plt.title(f'{title} (Trading Bars Only)')
-    plt.xlabel('Bar Number (continuous through trading sessions)')
-    plt.ylabel(f'{value_col.title()}')
+    title = f"{segment_value} {value_col.title()}" if segment_value else f"{value_col.title()}"
+    plt.title(f"{title} (Trading Bars Only)")
+    plt.xlabel("Bar Number (continuous through trading sessions)")
+    plt.ylabel(f"{value_col.title()}")
 
     # Add timestamp ticks
     if len(data) > tick_every:
-        tick_positions = data['bar_number'][::tick_every]
-        tick_labels = data[timestamp_col].dt.strftime('%Y-%m-%d %H:%M')[::tick_every]
+        tick_positions = data["bar_number"][::tick_every]
+        tick_labels = data[timestamp_col].dt.strftime("%Y-%m-%d %H:%M")[::tick_every]
         plt.xticks(tick_positions, tick_labels, rotation=45)
 
     plt.tight_layout()
@@ -88,11 +88,11 @@ def plot_timeseries(
 
 def plot_multiple_log_returns(
     df: pd.DataFrame,
-    timestamp_col: str = 'timestamp',
-    price_col: str = 'close',
-    segment_col: str = 'Symbol',
+    timestamp_col: str = "timestamp",
+    price_col: str = "close",
+    segment_col: str = "Symbol",
     segment_values: Optional[list] = None,
-    figsize: Tuple[int, int] = (12, 8)
+    figsize: Tuple[int, int] = (12, 8),
 ) -> None:
     """
     Plot multiple time series as cumulative log returns for comparison.
@@ -145,23 +145,23 @@ def plot_multiple_log_returns(
         asset_data = asset_data.sort_values(timestamp_col).reset_index(drop=True)
 
         # Calculate log returns and cumulative sum
-        asset_data['log_returns'] = np.log(asset_data[price_col] / asset_data[price_col].shift(1))
-        asset_data['cumulative_log_returns'] = asset_data['log_returns'].cumsum()
+        asset_data["log_returns"] = np.log(asset_data[price_col] / asset_data[price_col].shift(1))
+        asset_data["cumulative_log_returns"] = asset_data["log_returns"].cumsum()
 
         # Create bar numbers for continuous plotting
-        asset_data['bar_number'] = range(len(asset_data))
+        asset_data["bar_number"] = range(len(asset_data))
 
         # Plot (skip first row since it will be NaN)
         plt.plot(
-            asset_data['bar_number'][1:],
-            asset_data['cumulative_log_returns'][1:],
+            asset_data["bar_number"][1:],
+            asset_data["cumulative_log_returns"][1:],
             label=asset,
-            linewidth=1.5
+            linewidth=1.5,
         )
 
-    plt.title('Cumulative Log Returns Comparison')
-    plt.xlabel('Bar Number (continuous through trading sessions)')
-    plt.ylabel('Cumulative Log Returns')
+    plt.title("Cumulative Log Returns Comparison")
+    plt.xlabel("Bar Number (continuous through trading sessions)")
+    plt.ylabel("Cumulative Log Returns")
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
