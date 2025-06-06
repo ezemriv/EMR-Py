@@ -21,6 +21,7 @@ class TelegramTradingBot:
     Lightweight Telegram bot for trading notifications.
 
     Features:
+
     - Async-first design for minimal latency impact
     - Simple message sending
     - Formatted trade alerts

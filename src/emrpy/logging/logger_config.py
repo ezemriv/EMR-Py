@@ -1,38 +1,5 @@
 """High‑level logging utilities for **emrpy**.
 
-Usage
-=====
-**In a Python script or CLI**
-```python
-# download_binance.py
-from emrpy.logutils.logger_config import configure, get_logger
-
-# One‑time global setup – matches old scripts_logger defaults
-configure(
-    level="INFO",
-    log_dir="logs",                   # the same folder the old helper used
-    filename="binance_dl.log",        # name it however you like
-    rotate_bytes=2 * 1024 * 1024,     # 2 MB rotation
-    backups=1,                        # keep one rotated backup
-)
-
-log = get_logger(__name__)            # anywhere in your codebase
-log.info("This is information …")
-
-```
-
-**In a Jupyter notebook**
-```python
-from emrpy.logutils.logger_config import configure, get_logger
-
-# console‑only: no file writes, no rotation
-configure(level="INFO", rotate_bytes=0, backups=0)
-log = get_logger(__name__)
-log.info("Notebook cell executed ✔")
-```
-
-Public API
-----------
 - `get_logger(name="emrpy")` → Returns a namespaced logger seeded with a *NullHandler*.
 - `configure(...)` → Attaches colourised console + (optional) rotating file handler(s) **without** mutating the root logger.
 """

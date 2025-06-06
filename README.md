@@ -1,5 +1,10 @@
 # EMR-Py
 
+## Documentation
+[Read the docs](https://ezemriv.github.io/EMR-Py/)
+
+--
+
 ## Current Implementation Status
 - ✅ Logging utilities
 - ✅ ML encoders
