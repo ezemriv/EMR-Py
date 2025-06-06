@@ -1,6 +1,3 @@
-# Project specific .gitignore file for Python projects
-docs/
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
