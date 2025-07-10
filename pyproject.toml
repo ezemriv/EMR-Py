@@ -1,6 +1,6 @@
 [project]
 name = "emr-py"
-version = "0.5.1"
+version = "0.5.2"
 description = "My custom library for data science, trading and ML projects"
 readme = "README.md"
 authors = [
