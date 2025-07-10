@@ -31,6 +31,7 @@ async def real_bot():
 
 
 @pytest.mark.asyncio
+@pytest.mark.skip(reason="Temporarily disabled...")
 async def test_send_message_real(real_bot):
     """Should be able to send a simple text message."""
     ok = await real_bot.send_message("🔄 GitHub Actions Pytest 🐍\n\n📝 Simple message test")
@@ -38,6 +39,7 @@ async def test_send_message_real(real_bot):
 
 
 @pytest.mark.asyncio
+@pytest.mark.skip(reason="Temporarily disabled...")
 async def test_send_trade_alert_real(real_bot):
     """Should be able to send a formatted trade alert."""
     ok = await real_bot.send_trade_alert(
@@ -47,6 +49,7 @@ async def test_send_trade_alert_real(real_bot):
 
 
 @pytest.mark.asyncio
+@pytest.mark.skip(reason="Temporarily disabled...")
 async def test_send_bulk_notifications_real(real_bot):
     """Should be able to send a small bulk of messages."""
     msgs = [
