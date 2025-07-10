@@ -1,6 +1,8 @@
 name: Publish to PyPI
 on:
-  release: { types: [published] }
+  push:
+    tags:
+      - 'v*'
 
 permissions:
   id-token: write   # needed for trusted publishing
@@ -15,9 +17,6 @@ jobs:
       - uses: actions/setup-python@v5 # pin the Python we build with
         with:
           python-version-file: "pyproject.toml"  # or ".python-version"
-
-      # - name: Build & publish
-      #   run: uv publish          # no flags needed; uv builds if dist/ is absent --> May be failing to PyPI upload
 
       - name: Build distributions
         run: uv build --no-sources
