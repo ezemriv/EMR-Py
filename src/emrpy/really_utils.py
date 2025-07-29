@@ -1,17 +1,21 @@
 from pathlib import Path
+from typing import Union
 
-
-def get_root_path(fallback_levels: int = 0) -> Path:
+def get_root_path(file_: Union[str, Path], levels: int = 1) -> Path:
     """
-    Returns the root path based on current working directory.
+    Return the directory obtained by walking `levels` parents up
+    from *file_*.
 
-    Args:
-        fallback_levels (int): How many levels to go up from cwd.
+    Parameters
+    ----------
+    file_   : str | Path
+        Usually pass in ``__file__`` from the calling module.
+    levels  : int, default 1
+        How many directory levels to go up.
 
-    Returns:
-        Path: The resolved root path.
+    Returns
+    -------
+    pathlib.Path
+        The directory ``levels`` steps above *file_*.
     """
-    path = Path.cwd().resolve()
-    for _ in range(fallback_levels):
-        path = path.parent
-    return path
+    return Path(file_).resolve().parents[levels]
