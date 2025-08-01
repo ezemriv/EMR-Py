@@ -17,6 +17,7 @@ dependencies = [
     "matplotlib>=3.10.3",
     "seaborn>=0.13.2",
     "polars>=1.30.0",
+    "pyarrow>=21.0.0",
 ]
 
 [project.optional-dependencies]
