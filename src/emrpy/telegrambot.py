@@ -21,39 +21,74 @@ class TelegramTradingBot:
     Lightweight Telegram bot for trading notifications.
 
     Features:
-
+    -----------
     - Async-first design for minimal latency impact
     - Simple message sending
-    - Formatted trade alerts
+    - Formatted trade alerts with emoji
     - Bulk notifications support
     - Built-in error handling and logging
     """
 
-    def __init__(self, bot_token: str, chat_id: str, chat_name: Optional[str] = None):
+    def __init__(self,
+                 bot_token: str,
+                 chat_id: str,
+                 chat_name: Optional[str] = None):
         """
-        Initialize the Telegram bot.
+        Initialize a TelegramTradingBot instance.
 
-        Args:
-            bot_token: Your Telegram bot token from @BotFather
-            chat_id: Target chat ID (can be user ID or group chat ID)
+        Parameters:
+        -----------
+        bot_token : str
+            Your Telegram bot token from @BotFather.
+        chat_id : str
+            Target chat ID (user ID or group chat ID).
+        chat_name : Optional[str], default None
+            Human-readable name for the chat; if not provided, defaults to `chat_id`.
+
+        Returns:
+        --------
+        None
+
+        Examples:
+        ---------
+        >>> bot = TelegramTradingBot(
+        ...     bot_token="123:ABC", 
+        ...     chat_id="987654321"
+        ... )
         """
         self.bot = Bot(token=bot_token)
         self.chat_id = chat_id
         self.chat_name = chat_name or chat_id  # Use chat_id as fallback name
 
     async def send_message(
-        self, text: str, parse_mode: Optional[str] = None, disable_notification: bool = False
+        self,
+        text: str,
+        parse_mode: Optional[str] = None,
+        disable_notification: bool = False
     ) -> bool:
         """
-        Send a text message to the configured chat.
+        Send a text message to the configured Telegram chat asynchronously.
 
-        Args:
-            text: Message text to send
-            parse_mode: 'HTML' or 'Markdown' for formatting (optional)
-            disable_notification: Send silently without notification sound
+        Parameters:
+        -----------
+        text : str
+            Content of the message to send.
+        parse_mode : Optional[str], default None
+            Formatting mode: 'HTML' or 'Markdown'. No formatting if None.
+        disable_notification : bool, default False
+            If True, send silently without notification sound.
 
         Returns:
-            bool: True if message sent successfully, False otherwise
+        --------
+        bool
+            True if the message was sent successfully; False otherwise.
+
+        Examples:
+        ---------
+        >>> success = await bot.send_message(
+        ...     "Bot is now live 🚀", 
+        ...     parse_mode="Markdown"
+        ... )
         """
         try:
             await self.bot.send_message(
@@ -82,18 +117,37 @@ class TelegramTradingBot:
         disable_notification: bool = False,
     ) -> bool:
         """
-        Send a formatted trade alert with emoji and structured layout.
+        Send a formatted trade alert with structured layout and emoji indicators.
 
-        Args:
-            symbol: Trading symbol (e.g., 'BTCUSD', 'AAPL')
-            action: Trade action ('BUY', 'SELL', 'CLOSE')
-            price: Execution price
-            quantity: Trade quantity/size
-            profit_loss: P/L amount (optional, will show emoji based on sign)
-            disable_notification: Send silently without notification sound
+        Parameters:
+        -----------
+        symbol : str
+            Trading symbol (e.g., 'BTCUSD', 'AAPL').
+        action : str
+            Trade action: 'BUY', 'SELL', or 'CLOSE'.
+        price : float
+            Execution price of the trade.
+        quantity : float
+            Quantity or size of the trade.
+        profit_loss : Optional[float], default None
+            Profit or loss amount; if provided, shows 📈 for profit or 📉 for loss.
+        disable_notification : bool, default False
+            If True, send silently without notification sound.
 
         Returns:
-            bool: True if alert sent successfully, False otherwise
+        --------
+        bool
+            True if the alert was sent successfully; False otherwise.
+
+        Examples:
+        ---------
+        >>> await bot.send_trade_alert(
+        ...     symbol="ETHUSD",
+        ...     action="BUY",
+        ...     price=1820.50,
+        ...     quantity=1.2,
+        ...     profit_loss=45.75
+        ... )
         """
         # Choose emoji based on action and P/L
         if profit_loss is not None:
@@ -129,15 +183,28 @@ class TelegramTradingBot:
         disable_notification: bool = False,
     ) -> List[bool]:
         """
-        Send multiple messages concurrently for better performance.
+        Send multiple messages concurrently to improve throughput.
 
-        Args:
-            messages: List of message texts to send
-            parse_mode: 'HTML' or 'Markdown' for formatting (optional)
-            disable_notification: Send silently without notification sound
+        Parameters:
+        -----------
+        messages : List[str]
+            List of message texts to send.
+        parse_mode : Optional[str], default None
+            Formatting mode for all messages: 'HTML' or 'Markdown'.
+        disable_notification : bool, default False
+            If True, send all messages silently without notification sound.
 
         Returns:
-            List[bool]: List of success status for each message
+        --------
+        List[bool]
+            List of booleans indicating success status for each message.
+
+        Examples:
+        ---------
+        >>> statuses = await bot.send_bulk_notifications(
+        ...     ["Alert 1", "Alert 2"], 
+        ...     parse_mode="HTML"
+        ... )
         """
         if not messages:
             logger.warning("Empty message list provided to send_bulk_notifications")

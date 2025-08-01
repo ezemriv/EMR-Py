@@ -1,3 +1,4 @@
+# src/emrpy/data/loaders.py
 """
 Data Loading Utilities
 
@@ -8,15 +9,7 @@ lazy loading, and sampling options.
 import pandas as pd
 from typing import Union, Optional
 from pathlib import Path
-
-# Optional polars import
-try:
-    import polars as pl
-
-    POLARS_AVAILABLE = True
-except ImportError:
-    POLARS_AVAILABLE = False
-
+import polars as pl
 
 def load_csv(
     file_path: Union[str, Path],
