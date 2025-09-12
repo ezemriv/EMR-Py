@@ -1,4 +1,4 @@
-emrpy.telegrambot
+﻿emrpy.telegrambot
 =================
 
 .. automodule:: emrpy.telegrambot

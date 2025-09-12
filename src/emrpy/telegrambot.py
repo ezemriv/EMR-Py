@@ -8,7 +8,8 @@ Built on top of python-telegram-bot library for reliability and ease of use.
 
 import asyncio
 import logging
-from typing import Optional, List
+from typing import List, Optional
+
 from telegram import Bot
 from telegram.constants import ParseMode
 from telegram.error import TelegramError
@@ -30,10 +31,7 @@ class TelegramTradingBot:
     - Built-in error handling and logging
     """
 
-    def __init__(self,
-                 bot_token: str,
-                 chat_id: str,
-                 chat_name: Optional[str] = None):
+    def __init__(self, bot_token: str, chat_id: str, chat_name: Optional[str] = None):
         """
         Initialize a TelegramTradingBot instance.
 
@@ -53,7 +51,7 @@ class TelegramTradingBot:
         Examples:
         ---------
         >>> bot = TelegramTradingBot(
-        ...     bot_token="123:ABC", 
+        ...     bot_token="123:ABC",
         ...     chat_id="987654321"
         ... )
         """
@@ -62,10 +60,7 @@ class TelegramTradingBot:
         self.chat_name = chat_name or chat_id  # Use chat_id as fallback name
 
     async def send_message(
-        self,
-        text: str,
-        parse_mode: Optional[str] = None,
-        disable_notification: bool = False
+        self, text: str, parse_mode: Optional[str] = None, disable_notification: bool = False
     ) -> bool:
         """
         Send a text message to the configured Telegram chat asynchronously.
@@ -87,7 +82,7 @@ class TelegramTradingBot:
         Examples:
         ---------
         >>> success = await bot.send_message(
-        ...     "Bot is now live 🚀", 
+        ...     "Bot is now live 🚀",
         ...     parse_mode="Markdown"
         ... )
         """
@@ -203,7 +198,7 @@ class TelegramTradingBot:
         Examples:
         ---------
         >>> statuses = await bot.send_bulk_notifications(
-        ...     ["Alert 1", "Alert 2"], 
+        ...     ["Alert 1", "Alert 2"],
         ...     parse_mode="HTML"
         ... )
         """

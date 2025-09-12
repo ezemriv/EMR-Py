@@ -36,7 +36,7 @@ def test_configure_adds_console_once():
     logger = configure(name="emrpy.test_console", rotate_bytes=0)
     console_count_first = sum(isinstance(h, logging.StreamHandler) for h in logger.handlers)
 
-    # Second call should be a no‑op
+    # Second call should be a no op
     configure(name="emrpy.test_console", rotate_bytes=0)
     console_count_second = sum(isinstance(h, logging.StreamHandler) for h in logger.handlers)
 
@@ -50,6 +50,6 @@ def test_configure_is_idempotent(tmp_path: Path):
     logger = configure(name="emrpy.idemp", log_dir=log_dir)
     handler_count = len(logger.handlers)
 
-    # Re‑invoke with same parameters
+    # Re invoke with same parameters
     configure(name="emrpy.idemp", log_dir=log_dir)
     assert len(logger.handlers) == handler_count

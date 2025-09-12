@@ -1,5 +1,6 @@
 Welcome to emrpy's documentation!
 ==================================
+**Version:** |release|
 
 .. include:: getting-started.rst
 

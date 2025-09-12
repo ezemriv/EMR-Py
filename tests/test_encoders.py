@@ -1,5 +1,6 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
+
 from emrpy.ml.encoders import encode_cats_pandas
 
 
@@ -15,7 +16,7 @@ def test_encode_cats_pandas_train_only():
     cat_cols = ["col1", "col2"]
 
     # Run the function
-    train_encoded, _, encoder = encode_cats_pandas(
+    train_encoded, _, _ = encode_cats_pandas(
         train_df=train_df,
         cat_cols=cat_cols,
     )

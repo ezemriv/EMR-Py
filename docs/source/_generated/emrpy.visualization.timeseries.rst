@@ -8,5 +8,4 @@ emrpy.visualization.timeseries
 
    .. autosummary::
 
-      plot_multiple_log_returns
       plot_timeseries

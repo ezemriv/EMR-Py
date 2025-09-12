@@ -1,6 +1,6 @@
 [project]
 name = "emr-py"
-version = "0.5.2"
+version = "0.6.0"
 description = "My custom library for data science, trading and ML projects"
 readme = "README.md"
 authors = [
@@ -42,9 +42,6 @@ url = "https://test.pypi.org/simple/"
 publish-url = "https://test.pypi.org/legacy/"
 explicit = true
 
-[tool.ruff]
-line-length = 100
-
 [dependency-groups]
 dev = [
     "ipykernel>=6.29.5",
@@ -54,3 +51,29 @@ dev = [
     "pytest-asyncio>=1.0.0",
     "ruff>=0.9.1",
 ]
+
+[tool.ruff]
+# Exclude Jupyter notebooks and common directories
+exclude = [
+    "*.ipynb",
+    ".git",
+    ".ruff_cache",
+    "__pycache__",
+    ".venv",
+    "venv",
+    "dist",
+]
+line-length = 100
+
+[tool.ruff.lint]
+# Select rules focused on undefined names, unused variables and imports
+#ignore = ["F841"]  # Ignore unused variable warnings
+select = [
+    "F",    # pyflakes (catches undefined names, unused imports, unused variables)
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "I",    # isort
+    "RUF",  # ruff-specific rules
+]
+# Allow autofix for all enabled rules when using --fix with ruff as the linter
+fixable = ["ALL"]

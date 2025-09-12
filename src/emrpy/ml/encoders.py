@@ -5,10 +5,11 @@ Machine Learning Encoding Utilities
 Functions for encoding categorical columns.
 """
 
-from sklearn.preprocessing import OrdinalEncoder
+from typing import List, Optional, Tuple
+
 import numpy as np
 import pandas as pd
-from typing import Optional, Tuple, List
+from sklearn.preprocessing import OrdinalEncoder
 
 
 def encode_cats_pandas(
