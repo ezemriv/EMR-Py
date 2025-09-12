@@ -20,8 +20,8 @@ except ModuleNotFoundError:  # pragma: no cover  optional dependency missing
     from logging.handlers import RotatingFileHandler as _RFH  # type: ignore
 
 __all__ = [
-    "get_logger",
     "configure",
+    "get_logger",
 ]
 
 # ---------------------------------------------------------------------------

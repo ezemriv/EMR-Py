@@ -1,7 +1,7 @@
 Getting Started
 ===============
 
-Welcome to **emr-py** – a general-purpose utility library built for scalable Python projects, with special attention to observability and integration in cloud environments.
+Welcome to **emr-py** - a general-purpose utility library built for scalable Python projects, with special attention to observability and integration in cloud environments.
 
 This guide helps you get up and running quickly.
 

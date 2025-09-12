@@ -1,4 +1,4 @@
-emrpy.trading
+﻿emrpy.trading
 =============
 
 .. automodule:: emrpy.trading

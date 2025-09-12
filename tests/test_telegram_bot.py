@@ -1,12 +1,14 @@
 # tests/test_telegram_bot.py
 
 import os
+
 import pytest
 import pytest_asyncio
-from emrpy import TelegramTradingBot  # type: ignore
 
 # Load environment variables (for local testing)
 from dotenv import load_dotenv
+
+from emrpy import TelegramTradingBot  # type: ignore
 
 load_dotenv()
 
@@ -18,7 +20,8 @@ CHAT_NAME = os.getenv("TELEGRAM_CHAT_NAME", "Trading Telegram Chat") or "Trading
 # skip the entire module if credentials are missing
 if not BOT_TOKEN or not CHAT_ID:
     pytest.skip(
-        "Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in your environment to run Telegram integration tests",
+        """Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in your
+        environment to run Telegram integration tests""",
         allow_module_level=True,
     )
 

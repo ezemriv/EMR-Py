@@ -8,9 +8,11 @@ of gaps (as in trading weekends) and discontinuous timestamps.
 """
 
 from pathlib import Path
-from typing import Optional, Union, Tuple
-import pandas as pd
+from typing import Optional, Tuple, Union
+
 import matplotlib.pyplot as plt
+import pandas as pd
+
 
 def plot_timeseries(
     df: pd.DataFrame,

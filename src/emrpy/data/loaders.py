@@ -6,10 +6,12 @@ Functions for loading CSV and Parquet files with support for pandas or Polars ba
 eager or lazy loading, and optional sampling by fraction or row-count.
 """
 
-import pandas as pd
-from typing import Union, Optional
 from pathlib import Path
+from typing import Optional, Union
+
+import pandas as pd
 import polars as pl
+
 
 def load_csv(
     file_path: Union[str, Path],
@@ -146,9 +148,7 @@ def load_parquet(
         raise ValueError(f"Unsupported engine: {engine}. Use 'pandas' or 'polars'")
 
 
-def _load_csv_pandas(
-    file_path: Path, sample_n: Optional[int], **kwargs
-) -> pd.DataFrame:
+def _load_csv_pandas(file_path: Path, sample_n: Optional[int], **kwargs) -> pd.DataFrame:
     """
     pandas-based CSV loader with optional nrows sampling.
 
@@ -165,7 +165,7 @@ def _load_csv_pandas(
     -------
     pandas.DataFrame
     """
- 
+
     if sample_n is not None:
         df = pd.read_csv(file_path, nrows=sample_n, **kwargs)
     else:
@@ -174,9 +174,7 @@ def _load_csv_pandas(
     return df
 
 
-def _load_parquet_pandas(
-    file_path: Path, sample_n: Optional[int], **kwargs
-) -> pd.DataFrame:
+def _load_parquet_pandas(file_path: Path, sample_n: Optional[int], **kwargs) -> pd.DataFrame:
     """
     pandas-based Parquet loader with optional post-load sampling.
 
@@ -199,7 +197,7 @@ def _load_parquet_pandas(
     # Apply sampling if requested
     if sample_n is not None:
         df = df.sample(n=min(sample_n, len(df)), random_state=42)
-    
+
     return df
 
 

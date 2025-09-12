@@ -32,3 +32,10 @@ language = "en"
 
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
+
+# To add version number
+rst_epilog = f"""
+.. |release| replace:: {release}
+"""
+
+html_title = f"{project} {release}"

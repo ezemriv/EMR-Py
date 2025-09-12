@@ -1,4 +1,4 @@
-emrpy.visualization
+﻿emrpy.visualization
 ===================
 
 .. automodule:: emrpy.visualization
@@ -10,4 +10,5 @@ emrpy.visualization
    :toctree:
    :recursive:
 
+   finance
    timeseries
